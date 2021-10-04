@@ -1,0 +1,3 @@
+$('#myModal').hide();
+$('.modal-backdrop').hide();
+$('#comments').html("<%= escape_javascript render(:partial => 'articles/comments', :locals => { :comments => @comments }) %>");

@@ -1,0 +1,15 @@
+<center>
+<h1>Create your post here</h1>
+<%=form_for Article.new,url: articles_path,method: :post do |t|%>
+    
+    <%=t.label "Title"%><br>
+	<%=t.text_field :title%><br><br>
+	<%=t.label "Description"%><br>
+	<%=t.text_field :description%><br><br>
+	<%=t.label "Created_by"%><br>
+	<%=t.text_field :created_by%><br><br>
+	<%=t.label "Activate"%><br>
+	<%=t.check_box :active,{checked: false}%><br><br>
+	<%=t.submit %>
+	<%end%>
+</center>

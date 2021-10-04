@@ -1,0 +1,15 @@
+<center>
+<h1>Update your post here</h1>
+<%=form_for Article.new,url: article_path,method: :patch do |t|%>
+    <%#=t.hidden_field :user_id,value: @user.id%>
+    <%=t.label "Title"%><br>
+	<%=t.text_field :title%><br><br>
+	<%=t.label "Description"%><br>
+	<%=t.text_field :description%><br><br>
+	<%=t.label "Created_by"%><br>
+	<%=t.text_field :created_by%><br><br>
+	<%=t.label "Activate"%><br>
+	<%=t.check_box :active%><br><br>
+	<%=t.submit %>
+	<%end%>
+</center>

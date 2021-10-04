@@ -1,0 +1,160 @@
+<h1>This is your post</h1>
+Title-:<%=@article.title%><br>
+Description-:<%=@article.description%><br>
+
+<div>
+                   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">New Comment</button>
+                 </div>
+                 <div id="comments">
+                   <%= render "articles/comments"%>
+                 </div><br>
+                  </div>
+
+           </div>
+        </div>
+     </div>
+  </div>
+</div>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<!-- Modal -->
+<!-- <div class="modal fade" id="getCodeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" width=100px height=50px>
+  <div class="modal-dialog modal-lg">
+     <div class="modal-content">
+      <div class="modal-header">
+        <%#= form_for (@comment),:html => {:id => "form"} do |form| %>
+          <div><%#= form.hidden_field :user_id, value:current_user.id%></div>
+          <div><%#= form.hidden_field :article_id, value:@article.id%></div>
+         
+          <div class="field"><br>
+            <%#= form.label :Comment %><br>
+            <%#= form.text_field :post %>
+          </div>
+         
+          <div class="actions",id="button"><br>
+            <%#= form.submit%>
+          </div>
+        <%# end %>
+      </div>
+     <div class="modal-footer">
+       <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+     </div>
+   </div>
+  </div>
+</div> -->
+
+<!-- The Modal -->
+ <div class="modal" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+   
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Modal Heading</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+     
+  
+      <div class="modal-body">
+       <div class="container">
+   <div>    
+   <%#= form_for (@comment),:html => {:id => "form"} do |form| %>
+   <%= form_for (@comment), remote: true do |form| %>
+     <div><%= form.hidden_field :user_id, value:current_user.id%></div>
+     <div><%= form.hidden_field :article_id, value:@article.id%></div>
+     
+     <div class="field"><br>
+       <%= form.label :Comment %><br>
+       <%= form.text_field :post %>
+     </div>
+     
+     <div class="actions",id="button"><br>
+       <%= form.submit  %>
+     </div>
+   <% end %>
+
+      </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+     
+     </div>
+  </div>
+</div>
+ 
+ </div> 
+<script type="text/javascript">
+  $('form').submit(function(a) {
+  a.preventDefault();
+  debugger
+  var data = $('form').serialize();
+  debugger
+  $.ajax({
+     url: "/comments",
+     type: 'POST',
+     data: data ,
+      success: function(data) {
+        // debugger
+        // location.reload(true);
+        // debugger
+         //data.find('input:text_field').val('').removeAttr('comment');
+     
+      }
+   });
+});
+</script>
+
+<script type="text/javascript">
+  $("button").click(function(e){
+  debugger
+   e.preventDefault() ;
+   $.ajax({
+     type: 'post',
+     url: "/comments/popup",
+     data: {},
+      success: function(data) {
+        debugger
+       <%#=render"blogs/popup"%>
+       $("#getCodeModal").modal("toggle");
+      }
+   });
+  });
+</script>
+
+<!-- <a href="" class="btn btn-default btn-rounded mb-4" data-toggle="modal" data-target="#modalLoginForm">Add Comments</a>
+
+<div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Add Your Comment</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <i class="fas fa-envelope prefix grey-text"></i>
+          <input type="text" id="defaultForm-email" class="form-control validate">
+          <label data-error="wrong" data-success="right" for="defaultForm-email">Comment here</label>
+        </div>
+
+        <div class="md-form mb-4">
+          <i class="fas fa-lock prefix grey-text"></i>
+          <input type="password" id="defaultForm-pass" class="form-control validate">
+          <label data-error="wrong" data-success="right" for="defaultForm-pass">Your password</label>
+        </div> -->
+<!-- 
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <button class="btn btn-default">Post</button>
+      </div>
+    </div>
+  </div>
+</div>
+ -->
