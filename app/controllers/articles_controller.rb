@@ -34,12 +34,10 @@ class ArticlesController < ApplicationController
   	end
 
   	def active
-  		debugger
   		@article= Article.find(params[:id])
   		if (@article.active == false)
   			@article.update(active: true)
   		end
-        debugger
   		redirect_to root_path
 
   	end

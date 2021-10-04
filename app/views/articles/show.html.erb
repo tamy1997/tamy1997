@@ -90,9 +90,9 @@ Description-:<%=@article.description%><br>
 <script type="text/javascript">
   $('form').submit(function(a) {
   a.preventDefault();
-  debugger
+  
   var data = $('form').serialize();
-  debugger
+  
   $.ajax({
      url: "/comments",
      type: 'POST',
@@ -110,14 +110,14 @@ Description-:<%=@article.description%><br>
 
 <script type="text/javascript">
   $("button").click(function(e){
-  debugger
+
    e.preventDefault() ;
    $.ajax({
      type: 'post',
      url: "/comments/popup",
      data: {},
       success: function(data) {
-        debugger
+    
        <%#=render"blogs/popup"%>
        $("#getCodeModal").modal("toggle");
       }
